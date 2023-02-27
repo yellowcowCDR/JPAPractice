@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Order;
 
 @NoArgsConstructor
 @Getter
@@ -18,8 +19,12 @@ public class OrderItem extends BasicEntity{
     private Long id;
 
     @NotNull
-    private Long orderId;
+    @ManyToOne
+    @JoinColumn(name="ORDER_ID")
+    private Orders order;
 
     @NotNull
-    private Long itemId;
+    @ManyToOne
+    @JoinColumn(name="ITEM_ID")
+    private Item item;
 }
