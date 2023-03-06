@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -25,4 +26,16 @@ public class Orders extends BasicEntity{
     @NotNull
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+
+    @ManyToOne
+    @JoinColumn(name="MEMBER_ID")
+    private Member member;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
+
+    public void addOrderItem(OrderItem orderItem){
+        orderItem.setOrder(this);
+        this.orderItems.add(orderItem);
+    }
 }

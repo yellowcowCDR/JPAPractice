@@ -27,4 +27,8 @@ public class OrderItem extends BasicEntity{
     @ManyToOne
     @JoinColumn(name="ITEM_ID")
     private Item item;
+
+    private Integer orderPrice;
+
+    private Integer count;
 }

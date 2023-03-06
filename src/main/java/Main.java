@@ -1,3 +1,4 @@
+import domain.Item;
 import domain.Member;
 
 import javax.persistence.EntityManager;
@@ -21,6 +22,7 @@ public class Main {
                     .build();
 
             em.persist(member);
+
 
             tx.commit();
         }catch (Exception e){
