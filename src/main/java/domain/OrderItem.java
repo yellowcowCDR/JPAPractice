@@ -31,4 +31,26 @@ public class OrderItem extends BasicEntity{
     private Integer orderPrice;
 
     private Integer count;
+
+    /** 연관관계 편의 메소드 */
+    public void changeOrder(Orders order){
+        //기존에 연결된 연관관계 해제
+        if(this.order != null){
+            this.order.getOrderItems().remove(this);
+        }
+
+        this.setOrder(order);
+        order.getOrderItems().add(this);
+    }
+
+    /** 연관관계 편의 메소드 */
+    public void changeItem(Item item){
+        //기존에 연결된 연관관계 해제
+        if(this.item != null){
+            this.item.getOrderItems().remove(this);
+        }
+
+        this.setItem(item);
+        item.getOrderItems().add(this);
+    }
 }

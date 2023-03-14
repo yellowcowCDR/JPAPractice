@@ -3,6 +3,7 @@ package domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Member {
+public class Member extends BasicEntity{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="MEMBER_ID")
@@ -21,10 +22,5 @@ public class Member {
     private String street;
     private String zipcode;
     @OneToMany(mappedBy = "member")
-    private List<Orders> orders;
-
-    public void addOrder(Orders order){
-        order.setMember(this);
-        this.orders.add(order);
-    }
+    private List<Orders> orders = new ArrayList<>();
 }
